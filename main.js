@@ -15,56 +15,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===========================
-// Modal Functionality
-// ===========================
-function setupModals() {
-    // Open modal
-    document.querySelectorAll('.clickable-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const modalId = this.getAttribute('data-modal');
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-
-    // Close modal
-    document.querySelectorAll('.modal-close').forEach(closeBtn => {
-        closeBtn.addEventListener('click', function() {
-            const modal = this.closest('.modal');
-            if (modal) {
-                modal.classList.remove('show');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    });
-
-    // Close modal when clicking outside
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('show');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    });
-
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.modal.show').forEach(modal => {
-                modal.classList.remove('show');
-                document.body.style.overflow = 'auto';
-            });
-        }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', setupModals);
-
-// ===========================
 // Author Toggle Functionality
 // ===========================
 document.addEventListener('DOMContentLoaded', function() {
@@ -79,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 authorContent.style.display = 'block';
                 authorContent.classList.remove('hidden');
                 authorToggle.classList.add('active');
-                // Smooth animation
                 setTimeout(() => {
                     authorContent.style.opacity = '1';
                 }, 10);
@@ -117,53 +66,9 @@ document.querySelectorAll('.gallery-item, .video-card, .detail-card, .highlight-
 });
 
 // ===========================
-// Video Play Button Interaction
-// ===========================
-document.querySelectorAll('.play-button-overlay').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const videoId = this.getAttribute('data-video');
-        const videoElement = document.getElementById(videoId);
-        
-        if (videoElement) {
-            if (videoElement.paused) {
-                videoElement.play();
-                this.classList.add('hidden');
-            } else {
-                videoElement.pause();
-                this.classList.remove('hidden');
-            }
-        }
-    });
-});
-
-// Show play button again when video ends
-document.querySelectorAll('.video-element').forEach(video => {
-    video.addEventListener('ended', function() {
-        const videoId = this.id;
-        const button = document.querySelector(`[data-video="${videoId}"]`);
-        if (button) {
-            button.classList.remove('hidden');
-        }
-    });
-    
-    // Show play button when video is paused
-    video.addEventListener('pause', function() {
-        const videoId = this.id;
-        const button = document.querySelector(`[data-video="${videoId}"]`);
-        if (button && this.currentTime > 0 && !this.ended) {
-            button.classList.remove('hidden');
-        }
-    });
-});
-
-// ===========================
 // Dynamic Content Loading
 // ===========================
 document.addEventListener('DOMContentLoaded', () => {
-    // Add any dynamic content here
     console.log('Landing page loaded successfully!');
 });
 
@@ -184,19 +89,6 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
-
-// ===========================
-// Mobile Menu Toggle (if needed)
-// ===========================
-function setupMobileMenu() {
-    const navbar = document.querySelector('.navbar');
-    if (window.innerWidth <= 768) {
-        navbar.style.flexWrap = 'wrap';
-    }
-}
-
-window.addEventListener('resize', setupMobileMenu);
-setupMobileMenu();
 
 // ===========================
 // Scroll to Top Button
@@ -221,6 +113,8 @@ function createScrollToTopButton() {
         z-index: 999;
         box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
         transition: all 0.3s ease;
+        align-items: center;
+        justify-content: center;
     `;
 
     document.body.appendChild(button);
@@ -228,8 +122,6 @@ function createScrollToTopButton() {
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 300) {
             button.style.display = 'flex';
-            button.style.alignItems = 'center';
-            button.style.justifyContent = 'center';
         } else {
             button.style.display = 'none';
         }
@@ -260,6 +152,8 @@ createScrollToTopButton();
 // ===========================
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
     if (window.pageYOffset > 50) {
         navbar.style.boxShadow = '0 4px 12px rgba(0, 102, 204, 0.2)';
     } else {
@@ -276,7 +170,7 @@ function animateCounters() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
-                const finalValue = element.textContent;
+                const finalValue = element.textContent.replace('+', '');
                 const numericValue = parseInt(finalValue);
                 
                 if (!isNaN(numericValue)) {
@@ -285,8 +179,8 @@ function animateCounters() {
                     
                     const counter = setInterval(() => {
                         currentValue += increment;
-                        if (currentValue >= numericValue) {
-                            element.textContent = finalValue;
+                            if (currentValue >= numericValue) {
+                            element.textContent = numericValue + '+';
                             clearInterval(counter);
                         } else {
                             element.textContent = Math.floor(currentValue) + '+';
@@ -305,15 +199,71 @@ function animateCounters() {
 animateCounters();
 
 // ===========================
-// Hover Effects for Gallery Items
+// Video Play Button Interaction
 // ===========================
-document.querySelectorAll('.gallery-item, .video-card').forEach(item => {
-    item.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px) scale(1.02)';
+document.querySelectorAll('.play-button-overlay').forEach(button => {
+    button.addEventListener('click', () => {
+        const videoId = button.getAttribute('data-video');
+        const video = document.getElementById(videoId);
+        if (!video) return;
+
+        if (video.paused) {
+            // Pause all other videos
+            document.querySelectorAll('.video-element').forEach(v => {
+                if (v !== video) {
+                    v.pause();
+                    const btn = document.querySelector(`.play-button-overlay[data-video="${v.id}"]`);
+                    if (btn) btn.style.opacity = '0.9';
+                }
+            });
+
+            video.play();
+            button.style.opacity = '0';
+        } else {
+            video.pause();
+            button.style.opacity = '0.9';
+        }
     });
-    
-    item.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
+});
+
+// Optional: show play button again when video ends
+document.querySelectorAll('.video-element').forEach(video => {
+    video.addEventListener('ended', () => {
+        const btn = document.querySelector(`.play-button-overlay[data-video="${video.id}"]`);
+        if (btn) btn.style.opacity = '0.9';
+    });
+});
+// ===========================
+// Gallery modals open / close
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.clickable-item');
+    const modals = document.querySelectorAll('.modal');
+
+    items.forEach(item => {
+        const modalId = item.getAttribute('data-modal');
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+
+        item.addEventListener('click', () => {
+            modal.classList.add('open');
+        });
+    });
+
+    modals.forEach(modal => {
+        const closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('open');
+            });
+        }
+
+        // đóng khi click ra ngoài
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('open');
+            }
+        });
     });
 });
 
