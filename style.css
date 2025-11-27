@@ -607,6 +607,90 @@ p {
 }
 
 /* ===========================
+   Slides / Presentation Section
+   =========================== */
+.slides-section {
+    background: #ffffff;
+}
+
+.slides-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.2fr);
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.slides-subtitle {
+    margin: 0 0 0.6rem;
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+}
+
+.slides-text {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-bottom: 0.6rem;
+}
+
+.slides-actions {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+/* Khung PDF */
+.slides-viewer {
+    width: 100%;
+}
+
+.slides-frame-wrapper {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(221, 227, 240, 0.9);
+    background: #0b1120;
+    position: relative;
+}
+
+/* Giữ tỷ lệ khung 16:9 gần giống slide */
+.slides-frame-wrapper::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%; /* 16:9 */
+}
+
+.slides-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #111827;
+}
+
+.slides-note {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .slides-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .slides-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+
+/* ===========================
    Details
    =========================== */
 .details-section {
