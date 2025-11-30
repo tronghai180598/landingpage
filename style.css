@@ -60,6 +60,20 @@ a {
     color: inherit;
     text-decoration: none;
 }
+/* Link trong phần nội dung (vd: ссылки на внешние проекты) */
+.text-link {
+    font-weight: 600;                 /* đậm hơn */
+    color: var(--primary);            /* dùng màu chủ đạo của site */
+    text-decoration: underline;       /* gạch chân */
+    text-decoration-thickness: 1.5px; /* gạch chân dày hơn chút cho rõ */
+    text-underline-offset: 3px;       /* gạch cách chữ một chút */
+    cursor: pointer;
+}
+
+.text-link:hover {
+    color: var(--primary-dark);       /* hover đậm hơn một chút */
+}
+
 
 ul {
     margin: 0;
@@ -203,11 +217,16 @@ p {
 }
 
 .title-large {
-    font-size: 2.3rem;
+    font-size: 2.05rem;        /* nhỏ đi chút để câu dài hơn, ít xuống dòng */
+    align-items: center;
+    justify-content: center;
     font-weight: 650;
     color: var(--primary-dark);
-    margin-bottom: 1rem;
+    line-height: 1.5;         /* giảm khoảng cách giữa các dòng */
+    letter-spacing: 0.01em;    /* chữ gọn hơn một chút */
+    margin-bottom: 0.6rem;     /* bớt khoảng trắng phía dưới tiêu đề */
 }
+
 
 .subtitle {
     font-size: 1.05rem;
@@ -544,10 +563,15 @@ p {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.6rem;
 }
+.video-section .video-grid {
+    justify-content: center;
+}
 
 .video-card {
     background: var(--bg-card);
     border-radius: var(--radius);
+    max-width: 480px;      /* giới hạn độ rộng mỗi video-card */
+    margin: 0 auto;        /* căn giữa mỗi card */
     box-shadow: var(--shadow-sm);
     border: 1px solid rgba(221, 227, 240, 0.9);
     padding: 1rem;
@@ -564,14 +588,23 @@ p {
 
 .video-wrapper {
     position: relative;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     overflow: hidden;
     background: #000;
 }
 
-.video-element {
-    width: 100%;
+.video-wrapper::before {
+    content: "";
     display: block;
+    padding-top: 100%; /* thử 56.25% hoặc 50% nếu muốn thấp hơn */
+}
+
+.video-element {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 140%;
+    object-fit: cover;
 }
 
 .play-button-overlay {
@@ -939,9 +972,6 @@ p {
         order: -1;
     }
 
-    .title-large {
-        font-size: 1.9rem;
-    }
 
     .abstract-content {
         grid-template-columns: minmax(0, 1fr);
@@ -991,3 +1021,21 @@ p {
         padding: 1.4rem 1.3rem;
     }
 }
+.intro-text {
+    text-align: justify;
+    margin-bottom: 0.2em;
+}
+
+.intro-indent {
+    text-indent: 1em;      /* thụt đầu dòng đoạn văn */
+}
+
+.intro-list {
+    margin-left: 2.5em;    /* thụt vào so với lề trái */
+    margin-bottom: 1em;
+    padding-left: 1em;
+}
+.intro-list li {
+    margin-bottom: 0.3em;
+}
+
