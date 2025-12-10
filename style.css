@@ -557,39 +557,19 @@ p {
 .video-section {
     background: #ffffff;
 }
-/* Khung bọc video */
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-    overflow: hidden;
-    border-radius: var(--radius);
-}
-
-/* Chính video */
-.video-element {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-}
-
 
 .video-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.6rem;
-}
-.video-section .video-grid {
-    justify-content: center;
+    align-items: start;
 }
 
 .video-card {
     background: var(--bg-card);
     border-radius: var(--radius);
-    max-width: 480px;      /* giới hạn độ rộng mỗi video-card */
-    margin: 0 auto;        /* căn giữa mỗi card */
+    /* bỏ max-width + margin để nó ăn full width của cột */
+    width: 100%;
     box-shadow: var(--shadow-sm);
     border: 1px solid rgba(221, 227, 240, 0.9);
     padding: 1rem;
@@ -598,6 +578,7 @@ p {
     gap: 0.8rem;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
+
 
 .video-card:hover {
     transform: translateY(-4px);
@@ -609,12 +590,13 @@ p {
     border-radius: 12px;
     overflow: hidden;
     background: #000;
+    aspect-ratio: 16 / 9;
 }
 
 .video-wrapper::before {
     content: "";
     display: block;
-    padding-top: 56.25%; /* 16:9 aspect ratio */
+    padding-top: 56.25%; /* 16:9, nhìn giống video YouTube, các thẻ bằng chiều cao */
 }
 
 .video-element {
@@ -622,64 +604,36 @@ p {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
+
 
 .play-button-overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    /* nhỏ lại */
-    width: 52px;
-    height: 52px;
+    inset: 0;
+    margin: auto;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    
-    border: 2px solid rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.35);
-    
+    border: none;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    font-size: 1.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    cursor: pointer;
-    outline: none;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-    transition: var(--transition);
-    
-    font-size: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all var(--transition-fast);
+    opacity: 0.85;
+    z-index: 10;
 }
 
-.play-button-overlay::before {
-    content: '';
-    border-style: solid;
-    /* tam giác nhỏ lại theo */
-    border-width: 10px 0 10px 16px;
-    border-color: transparent transparent transparent #ffffff;
-    margin-left: 2px;
+.play-button-overlay:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+    opacity: 1;
 }
-
-.video-wrapper:hover .play-button-overlay,
-.play-button-overlay:focus-visible {
-    transform: translate(-50%, -50%) scale(1.06);
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
-}
-
-/* Tăng kích thước 2 video cuối */
-#video8,
-#video9 {
-    max-width: 100%;
-}
-
-.video-card:nth-child(8),
-.video-card:nth-child(9),
-.video-card:nth-child(10) {
-    max-width: 100%;
-    width: 100%;
-}
-
 
 .video-title {
     font-size: 0.94rem;
@@ -803,14 +757,6 @@ p {
     background: var(--primary-light);
     margin-bottom: 0.7rem;
     font-size: 1.1rem;
-    color: var(--primary-dark);
-}
-
-.detail-icon svg {
-    width: 100%;
-    height: 100%;
-    max-width: 1.5rem;
-    max-height: 1.5rem;
 }
 
 .detail-card h3 {
