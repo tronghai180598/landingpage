@@ -667,6 +667,18 @@ p {
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
 }
 
+/* Tăng kích thước 2 video cuối */
+#video8,
+#video9 {
+    max-width: 100%;
+}
+
+.video-card:nth-child(8),
+.video-card:nth-child(9) {
+    max-width: 100%;
+    width: 100%;
+}
+
 
 .video-title {
     font-size: 0.94rem;
