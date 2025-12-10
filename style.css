@@ -614,15 +614,15 @@ p {
 .video-wrapper::before {
     content: "";
     display: block;
-    padding-top: 100%; /* thử 56.25% hoặc 50% nếu muốn thấp hơn */
+    padding-top: 56.25%; /* 16:9 aspect ratio */
 }
 
 .video-element {
     position: absolute;
     inset: 0;
     width: 100%;
-    height: 140%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
 }
 
 .play-button-overlay {
