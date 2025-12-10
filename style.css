@@ -674,7 +674,8 @@ p {
 }
 
 .video-card:nth-child(8),
-.video-card:nth-child(9) {
+.video-card:nth-child(9),
+.video-card:nth-child(10) {
     max-width: 100%;
     width: 100%;
 }
