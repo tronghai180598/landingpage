@@ -137,29 +137,6 @@
                 <h2 class="section-title">Об авторах</h2>
             
             <div class="author-content" id="authorContent">
-                <!-- Author 1: Shilin Alexander -->
-                <div class="author-card animate-on-scroll">
-                    <div class="avatar-placeholder">
-                        <img src="images/image_shilin.jpg" alt="Shilin Alexander" class="author-image">
-                    </div>
-                    <div class="author-info">
-                        <h3 class="author-name">Шилин Александр Анатольевич</h3>
-                        <p class="author-role">Доктор технических наук, доцент</p>
-                        <p class="author-title">
-                            Профессор ОЭЭ, ИШЭ, Томский политехнический университет
-                        </p>
-                        <p class="author-bio">
-                        Шилин А. А. на протяжении многих лет занимается исследованиями в области систем управления и оптимального управления. Обладает значительным опытом научной работы, является автором множества рецензируемых публикаций и руководит исследованиями в сфере электроэнергетики и интеллектуальных систем управления.
-                        </p>
-                        <div class="author-stats">
-                            <div class="stat">
-                                <div class="stat-number" data-target="200">0+</div>
-                                <div class="stat-label">Публикаций</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Author 2: Pham Trong Hai -->
                 <div class="author-card animate-on-scroll">
                     <div class="avatar-placeholder">
@@ -185,6 +162,29 @@
                         </div>
                     </div>
                 </div>
+                <!-- Author 1: Shilin Alexander -->
+                <div class="author-card animate-on-scroll">
+                    <div class="avatar-placeholder">
+                        <img src="images/image_shilin.jpg" alt="Shilin Alexander" class="author-image">
+                    </div>
+                    <div class="author-info">
+                        <h3 class="author-name">Шилин Александр Анатольевич</h3>
+                        <p class="author-role">Доктор технических наук, доцент</p>
+                        <p class="author-title">
+                            Профессор ОЭЭ, ИШЭ, Томский политехнический университет
+                        </p>
+                        <p class="author-bio">
+                        Шилин А. А. на протяжении многих лет занимается исследованиями в области систем управления и оптимального управления. Обладает значительным опытом научной работы, является автором множества рецензируемых публикаций и руководит исследованиями в сфере электроэнергетики и интеллектуальных систем управления.
+                        </p>
+                        <div class="author-stats">
+                            <div class="stat">
+                                <div class="stat-number" data-target="200">0+</div>
+                                <div class="stat-label">Публикаций</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>  
         </div>
     </section>
@@ -234,12 +234,37 @@
         <div class="container">
             <h2 class="section-title">Галерея проекта</h2>
             <div class="gallery-grid">
+                <div class="gallery-item clickable-item animate-on-scroll" data-modal="3DuavToModal">
+                    <div class="gallery-image">
+                        <img src="images/uav_3D.png" alt="3D модель квадрокоптера">
+                    </div>
+                    <p class="gallery-caption">
+                        3D-модель полной версии квадрокоптера (нажмите для подробностей)
+                    </p>
+                </div>
+                <div class="gallery-item clickable-item animate-on-scroll" data-modal="stendModal">
+                    <div class="gallery-image">
+                        <img src="images/ustanop.jpg" alt="Экспериментальный стенд">
+                    </div>
+                    <p class="gallery-caption">
+                        Стойка для испытаний по трём осям (нажмите для подробностей)
+                    </p>
+                </div>
+                
                 <div class="gallery-item clickable-item animate-on-scroll" data-modal="uavNhoModal">
                     <div class="gallery-image">
                         <img src="images/UAV_nho.jpg" alt="ESP-Drone малый прототип">
                     </div>
                     <p class="gallery-caption">
                         Прототип БПЛА на базе Espressif (ESP32-Drone) (нажмите для подробностей)
+                    </p>
+                </div>
+                <div class="gallery-item clickable-item animate-on-scroll" data-modal="chexema">
+                    <div class="gallery-image">
+                        <img src="images/detal_UAV.jpg" alt="Схема компонента">
+                    </div>
+                    <p class="gallery-caption">
+                        Детали и схема установки (нажмите для подробностей)
                     </p>
                 </div>
 
@@ -261,31 +286,6 @@
                     </p>
                 </div>
 
-                <div class="gallery-item clickable-item animate-on-scroll" data-modal="stendModal">
-                    <div class="gallery-image">
-                        <img src="images/ustanop.jpg" alt="Экспериментальный стенд">
-                    </div>
-                    <p class="gallery-caption">
-                        Стойка для испытаний по трём осям (нажмите для подробностей)
-                    </p>
-                </div>
-
-                <div class="gallery-item clickable-item animate-on-scroll" data-modal="3DuavToModal">
-                    <div class="gallery-image">
-                        <img src="images/uav_3D.png" alt="3D модель квадрокоптера">
-                    </div>
-                    <p class="gallery-caption">
-                        3D-модель полной версии квадрокоптера (нажмите для подробностей)
-                    </p>
-                </div>
-                    <div class="gallery-item clickable-item animate-on-scroll" data-modal="chexema">
-                    <div class="gallery-image">
-                        <img src="images/detal_UAV.jpg" alt="Схема компонента">
-                    </div>
-                    <p class="gallery-caption">
-                        Детали и схема установки (нажмите для подробностей)
-                    </p>
-                </div>
             </div>
         </div>
     </section>
@@ -295,30 +295,51 @@
         <div class="container">
             <h2 class="section-title">Видеоматериалы с проведённых экспериментов</h2>
             <div class="video-grid">
-                
-                <div class="video-card animate-on-scroll">
+
+                    <div class="video-card animate-on-scroll">
                     <div class="video-wrapper">
-                        <video id="video1" class="video-element">
-                            <source src="videos/test_UAV_1_kanal.mp4" type="video/mp4">
+                        <video id="video8" class="video-element">
+                            <source src="videos/vide_UAV_pitch.mp4" type="video/mp4">
                             Ваш браузер не поддерживает видео тег.
                         </video>
-                        <button class="play-button-overlay" data-video="video1">▶</button>
+                        <button class="play-button-overlay" data-video="video8">▶</button>
                     </div>
-                    <p class="video-title">Тестирование квадрокоптера по одному каналу</p>
+                    <p class="video-title">3D моделирования по тангажу</p>
                 </div>
 
-                
                 <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video2" class="video-element">
-                            <source src="videos/test_UAV_to.mp4" type="video/mp4">
+                <div class="video-wrapper">
+                        <video id="video9" class="video-element">
+                            <source src="videos/uav_blender.mp4" type="video/mp4">
                             Ваш браузер не поддерживает видео тег.
                         </video>
-                        <button class="play-button-overlay" data-video="video2">▶</button>
+                        <button class="play-button-overlay" data-video="video9">▶</button>
                     </div>
-                    <p class="video-title">Тестирование квадрокоптера с совмещением каналов</p>
+                    <p class="video-title">3D моделирования по крену</p>
                 </div>
                 <div class="video-card animate-on-scroll">
+                    <div class="video-wrapper">
+                        <video id="video10" class="video-element">
+                            <source src="videos/printer3D.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                        <button class="play-button-overlay" data-video="video10">▶</button>
+                    </div>
+                    <p class="video-title">Распечатать 3D корпус квадрокоптера - часть 1</p>
+                </div>
+
+                <div class="video-card animate-on-scroll">
+                    <div class="video-wrapper">
+                        <video id="video11" class="video-element">
+                            <source src="videos/printer3D_2.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                        <button class="play-button-overlay" data-video="video11">▶</button>
+                    </div>
+                    <p class="video-title">Печать деталей корпуса квадрокоптера - часть 2</p>
+                </div>
+                
+                 <div class="video-card animate-on-scroll">
                     <div class="video-wrapper">
                         <video id="video3" class="video-element">
                             <source src="videos/uav_nho_1.mp4" type="video/mp4">
@@ -363,6 +384,29 @@
 
                 <div class="video-card animate-on-scroll">
                     <div class="video-wrapper">
+                        <video id="video1" class="video-element">
+                            <source src="videos/test_UAV_1_kanal.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                        <button class="play-button-overlay" data-video="video1">▶</button>
+                    </div>
+                    <p class="video-title">Тестирование квадрокоптера по одному каналу</p>
+                </div>
+
+                
+                <div class="video-card animate-on-scroll">
+                    <div class="video-wrapper">
+                        <video id="video2" class="video-element">
+                            <source src="videos/test_UAV_to.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                        <button class="play-button-overlay" data-video="video2">▶</button>
+                    </div>
+                    <p class="video-title">Тестирование квадрокоптера с совмещением каналов</p>
+                </div>
+               
+                <div class="video-card animate-on-scroll">
+                    <div class="video-wrapper">
                         <video id="video7" class="video-element">
                             <source src="videos/ctrl_slide.mp4" type="video/mp4">
                             Ваш браузер не поддерживает видео тег.
@@ -373,49 +417,6 @@
                 </div>
 
                 <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video8" class="video-element">
-                            <source src="videos/vide_UAV_pitch.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                        <button class="play-button-overlay" data-video="video8">▶</button>
-                    </div>
-                    <p class="video-title">3D моделирования по тангажу</p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video9" class="video-element">
-                            <source src="videos/uav_blender.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                        <button class="play-button-overlay" data-video="video9">▶</button>
-                    </div>
-                    <p class="video-title">3D моделирования по крену</p>
-                </div>
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video10" class="video-element">
-                            <source src="videos/printer3D.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                        <button class="play-button-overlay" data-video="video10">▶</button>
-                    </div>
-                    <p class="video-title">Распечатать 3D корпус квадрокоптера</p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video11" class="video-element">
-                            <source src="videos/printer3D_2.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                        <button class="play-button-overlay" data-video="video11">▶</button>
-                    </div>
-                    <p class="video-title">Печать деталей корпуса квадрокоптера - часть 2</p>
-                </div>
-
-                                <div class="video-card animate-on-scroll">
                 <div class="video-wrapper">
                         <video id="video12" class="video-element">
                             <source src="videos/video_UAV_ok.mp4" type="video/mp4">
