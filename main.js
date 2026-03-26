@@ -54,6 +54,10 @@ const scrollObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('is-inview');
             scrollObserver.unobserve(entry.target);
+            if (entry.target.matches('.video-card, .gallery-item')) {
+                setTimeout(measureTitleMarquees, 50);
+                setTimeout(measureTitleMarquees, 850);
+            }
         }
     });
 }, observerOptions);
@@ -61,6 +65,80 @@ const scrollObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.animate-on-scroll').forEach(el => {
     scrollObserver.observe(el);
 });
+
+// ===========================
+// Long gallery/video titles: wrap + horizontal scroll when overflow
+// ===========================
+function wrapMediaTitlesForMarquee() {
+    document.querySelectorAll('.video-title, .gallery-caption').forEach((el) => {
+        if (el.querySelector('.title-line')) return;
+        const line = document.createElement('span');
+        line.className = 'title-line';
+        const inner = document.createElement('span');
+        inner.className = 'title-scroll-inner';
+        while (el.firstChild) {
+            inner.appendChild(el.firstChild);
+        }
+        line.appendChild(inner);
+        el.appendChild(line);
+    });
+}
+
+function measureTitleMarquees() {
+    document.querySelectorAll('.video-title, .gallery-caption').forEach((el) => {
+        const inner = el.querySelector('.title-scroll-inner');
+        const line = el.querySelector('.title-line');
+        if (!inner || !line) return;
+        const available = line.clientWidth;
+        const full = inner.scrollWidth;
+        const overflow = full - available;
+        if (overflow > 6) {
+            el.classList.add('has-marquee');
+            inner.style.setProperty('--scroll-amt', `-${overflow}px`);
+        } else {
+            el.classList.remove('has-marquee');
+            inner.style.removeProperty('--scroll-amt');
+        }
+    });
+}
+
+function debounce(fn, ms) {
+    let t;
+    return function (...args) {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(this, args), ms);
+    };
+}
+
+const measureTitleMarqueesDebounced = debounce(measureTitleMarquees, 120);
+
+function initMediaTitleMotion() {
+    wrapMediaTitlesForMarquee();
+    measureTitleMarquees();
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(measureTitleMarquees);
+    }
+    window.addEventListener('resize', measureTitleMarqueesDebounced);
+
+    document.querySelectorAll('.video-card, .gallery-item').forEach((card) => {
+        const ro = new ResizeObserver(() => measureTitleMarquees());
+        ro.observe(card);
+    });
+
+    const remeasureObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(measureTitleMarquees);
+                    });
+                }
+            });
+        },
+        { rootMargin: '80px 0px', threshold: 0 }
+    );
+    document.querySelectorAll('.video-card, .gallery-item').forEach((el) => remeasureObserver.observe(el));
+}
 
 // ===========================
 // Navbar shadow on scroll
@@ -324,6 +402,8 @@ document.querySelectorAll('.video-wrapper').forEach(wrapper => {
 // Gallery Modals
 // ===========================
 document.addEventListener('DOMContentLoaded', () => {
+    initMediaTitleMotion();
+
     const items = document.querySelectorAll('.clickable-item');
     const modals = document.querySelectorAll('.modal');
 

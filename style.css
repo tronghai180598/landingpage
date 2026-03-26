@@ -650,11 +650,36 @@ p {
 }
 
 .gallery-caption {
-    padding: 0.9rem 1rem 1rem;
+    padding: 0.85rem 1rem 1.05rem;
     font-size: 0.9rem;
     color: var(--primary-dark);
     font-weight: 500;
     text-align: center;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    position: relative;
+    transition: color 0.35s var(--ease-soft), transform 0.4s var(--ease-out);
+}
+
+.gallery-caption::before {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+    margin: 0 auto 0.5rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    opacity: 0.9;
+    transition: width 0.45s var(--ease-out);
+}
+
+.gallery-item:hover .gallery-caption {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.gallery-item:hover .gallery-caption::before {
+    width: 2.75rem;
 }
 
 .gallery-item:hover {
@@ -792,7 +817,76 @@ p {
     text-align: center;
     line-height: 1.45;
     letter-spacing: -0.01em;
-    padding: 0 0.25rem;
+    padding: 0 0.35rem 0.1rem;
+    margin: 0;
+    position: relative;
+    transition: color 0.35s var(--ease-soft), transform 0.4s var(--ease-out);
+}
+
+.video-title::before {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+    margin: 0 auto 0.55rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    opacity: 0.85;
+    transition: width 0.45s var(--ease-out);
+}
+
+.video-card:hover .video-title {
+    color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.video-card:hover .video-title::before {
+    width: 2.75rem;
+}
+
+/* Title line wrapper (filled by main.js): scroll-in + optional horizontal marquee */
+.video-title .title-line,
+.gallery-caption .title-line {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8px, #000 calc(100% - 8px), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8px, #000 calc(100% - 8px), transparent);
+}
+
+.video-title.has-marquee .title-line,
+.gallery-caption.has-marquee .title-line {
+    justify-content: flex-start;
+}
+
+.video-title .title-scroll-inner,
+.gallery-caption .title-scroll-inner {
+    display: inline-block;
+    max-width: none;
+    white-space: nowrap;
+}
+
+.gallery-item.is-inview .gallery-caption .title-line,
+.video-card.is-inview .video-title .title-line {
+    animation: mediaTitleReveal 0.95s var(--ease-out) 0.4s both;
+}
+
+.video-title.has-marquee .title-scroll-inner,
+.gallery-caption.has-marquee .title-scroll-inner {
+    animation: titleMarqueeX 18s ease-in-out infinite alternate;
+}
+
+@keyframes titleMarqueeX {
+    0%,
+    12% {
+        transform: translateX(0);
+    }
+    88%,
+    100% {
+        transform: translateX(var(--scroll-amt, 0));
+    }
 }
 
 /* ===========================
@@ -1134,6 +1228,17 @@ p {
 /* ===========================
    Animations & Scroll
    =========================== */
+@keyframes mediaTitleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(28px);
@@ -1182,6 +1287,34 @@ p {
 
     .slides-viewer:hover .slides-frame-wrapper {
         transform: none;
+    }
+
+    .gallery-item.is-inview .gallery-caption .title-line,
+    .video-card.is-inview .video-title .title-line {
+        animation: none;
+    }
+
+    .video-title.has-marquee .title-scroll-inner,
+    .gallery-caption.has-marquee .title-scroll-inner {
+        animation: none;
+        white-space: normal;
+    }
+
+    .video-title .title-line,
+    .gallery-caption .title-line {
+        -webkit-mask-image: none;
+        mask-image: none;
+        overflow: visible;
+    }
+
+    .gallery-item:hover .gallery-caption,
+    .video-card:hover .video-title {
+        transform: none;
+    }
+
+    .gallery-item:hover .gallery-caption::before,
+    .video-card:hover .video-title::before {
+        width: 0;
     }
 }
 
