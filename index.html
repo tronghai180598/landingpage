@@ -41,11 +41,14 @@
 
     gtag('config', 'G-BKHLWWDC2M');
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
+    <div class="page-bg" aria-hidden="true"></div>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -92,7 +95,6 @@
     Проект объединяет теорию и практику, помогая будущим инженерам не только понять,
     как работает система управления, но и почему она ведёт себя именно таким образом.
 </p>
-
 
                 <p class="intro-text">
                     Конструкция опирается на детали, напечатанные на 3D-принтере, и
@@ -195,7 +197,11 @@
             <h2 class="section-title">Аннотация проекта</h2>
             <div class="abstract-content">
                 <p class="abstract-text animate-on-scroll">
-                Проект направлен на разработку компактной и доступной экспериментальной платформы для исследования управления квадрокоптером по углам ориентации. В работе используются два различных типа летательных аппаратов: первый квадрокоптер собран «с нуля» на основе собственной 3D-печатной конструкции, второй построен на базе готовой аппаратной платформы проекта 
+                Проект направлен на разработку компактной и доступной экспериментальной платформы для исследования управления квадрокоптером по углам ориентации. В работе используются два различных типа летательных аппаратов: первый квадрокоптер собран «с нуля» на основе собственной 3D-печатной конструкции, реализован на базе проекта
+                <a href="https://habr.com/ru/articles/814127/" target="_blank" rel="noopener noreferrer" class="text-link">
+                    Flix (ESP32-Drone)
+                    </a> 
+                и второй построен на базе готовой аппаратной платформы проекта 
                 <a href="https://github.com/espressif/esp-drone" target="_blank" rel="noopener noreferrer" class="text-link">
                 Espressif (ESP32-Drone)
                 </a>, 
@@ -425,6 +431,40 @@
                         <button class="play-button-overlay" data-video="video12">▶</button>
                     </div>
                     <p class="video-title">Представление проекта</p>
+                </div>
+
+                <div class="video-card animate-on-scroll">
+                <div class="video-wrapper">
+                        <video id="video13" class="video-element">
+                            <source src="videos/1.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                        <button class="play-button-overlay" data-video="video13">▶</button>
+                    </div>
+                    <p class="video-title">Тестирование полета большого квадрокоптера на базе разпечатого корпуса на полигоне</p>
+                </div>
+
+                <div class="video-card animate-on-scroll">
+                <div class="video-wrapper">
+                        <video id="video14" class="video-element">
+                            <source src="videos/2.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                        <button class="play-button-overlay" data-video="video14">▶</button>
+                    </div>
+                    <p class="video-title">Тестирование полета маленького квадрокоптера на базе ESP32</p>
+                </div>
+
+
+                <div class="video-card animate-on-scroll">
+                <div class="video-wrapper">
+                        <video id="video15" class="video-element">
+                            <source src="videos/3.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                        <button class="play-button-overlay" data-video="video15">▶</button>
+                    </div>
+                    <p class="video-title">Тестирование полета маленького квадрокоптера на базе ESP32 на полигоне</p>
                 </div>
 
             </div>
