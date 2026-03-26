@@ -120,8 +120,18 @@ function initMediaTitleMotion() {
     }
     window.addEventListener('resize', measureTitleMarqueesDebounced);
 
+    let roFramePending = false;
+    const scheduleMarqueeMeasureFromResize = () => {
+        if (roFramePending) return;
+        roFramePending = true;
+        requestAnimationFrame(() => {
+            roFramePending = false;
+            measureTitleMarquees();
+        });
+    };
+
     document.querySelectorAll('.video-card, .gallery-item').forEach((card) => {
-        const ro = new ResizeObserver(() => measureTitleMarquees());
+        const ro = new ResizeObserver(scheduleMarqueeMeasureFromResize);
         ro.observe(card);
     });
 
@@ -141,17 +151,42 @@ function initMediaTitleMotion() {
 }
 
 // ===========================
-// Navbar shadow on scroll
+// Navbar shadow + scroll-to-top: one passive scroll listener, rAF-throttled, class toggles (no per-frame style writes)
 // ===========================
-window.addEventListener('scroll', () => {
+function setupScrollChrome() {
     const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    if (window.pageYOffset > 50) {
-        navbar.style.boxShadow = '0 4px 12px rgba(0, 80, 168, 0.18)';
-    } else {
-        navbar.style.boxShadow = '0 2px 8px rgba(0, 80, 168, 0.12)';
+    const scrollBtn = document.getElementById('scrollToTop');
+    if (!navbar && !scrollBtn) return;
+
+    let navScrolled = false;
+    let btnVisible = false;
+    let rafId = 0;
+
+    function syncScrollChrome() {
+        rafId = 0;
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        const nextNav = y > 50;
+        const nextBtn = y > 300;
+
+        if (navbar && nextNav !== navScrolled) {
+            navScrolled = nextNav;
+            navbar.classList.toggle('is-scrolled', navScrolled);
+        }
+        if (scrollBtn && nextBtn !== btnVisible) {
+            btnVisible = nextBtn;
+            scrollBtn.classList.toggle('is-visible', btnVisible);
+        }
     }
-});
+
+    function onScroll() {
+        if (!rafId) {
+            rafId = requestAnimationFrame(syncScrollChrome);
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    syncScrollChrome();
+}
 
 // ===========================
 // Scroll to Top Button
@@ -162,14 +197,6 @@ function createScrollToTopButton() {
     button.innerHTML = '↑';
 
     document.body.appendChild(button);
-
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            button.style.display = 'flex';
-        } else {
-            button.style.display = 'none';
-        }
-    });
 
     button.addEventListener('click', () => {
         window.scrollTo({
@@ -190,6 +217,7 @@ function createScrollToTopButton() {
 }
 
 createScrollToTopButton();
+setupScrollChrome();
 
 // ===========================
 // Counters for stats

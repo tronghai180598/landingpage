@@ -70,9 +70,11 @@ html {
     content: "";
     position: absolute;
     border-radius: 50%;
-    filter: blur(90px);
+    /* Large blur on huge orbs is very GPU-heavy; 52px keeps a similar look with less compositing cost */
+    filter: blur(52px);
     opacity: 0.5;
     will-change: transform;
+    transform: translate3d(0, 0, 0);
     animation: bgOrbDrift 24s var(--ease-soft) infinite alternate;
 }
 
@@ -195,12 +197,17 @@ p {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.78);
-    backdrop-filter: saturate(1.15) blur(16px);
-    -webkit-backdrop-filter: saturate(1.15) blur(16px);
+    background: rgba(255, 255, 255, 0.86);
+    /* Lighter blur = much cheaper while scrolling behind sticky bar */
+    backdrop-filter: saturate(1.12) blur(10px);
+    -webkit-backdrop-filter: saturate(1.12) blur(10px);
     border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 8px rgba(0, 80, 168, 0.12);
     transition: box-shadow var(--transition), background var(--transition);
+}
+
+.navbar.is-scrolled {
+    box-shadow: 0 4px 12px rgba(0, 80, 168, 0.18);
 }
 
 .nav-wrapper {
@@ -1216,6 +1223,10 @@ p {
     justify-content: center;
 }
 
+#scrollToTop.is-visible {
+    display: flex;
+}
+
 #scrollToTop:hover {
     transform: translateY(-3px) scale(1.04);
     box-shadow: var(--shadow-lg), 0 14px 32px -8px rgba(11, 92, 173, 0.5);
@@ -1254,6 +1265,12 @@ p {
     .page-bg::before,
     .page-bg::after {
         animation: none;
+    }
+
+    .navbar {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(255, 255, 255, 0.96);
     }
 
     .animate-on-scroll {
