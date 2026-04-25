@@ -59,9 +59,9 @@
                 </button>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#introduction">Главная</a></li>
+                    <li><a href="#abstract">Аннотация</a></li>
                     <li><a href="#our-uavs">Наши БПЛА</a></li>
                     <li><a href="#author">Авторы</a></li>
-                    <li><a href="#abstract">Аннотация</a></li>
                     <li><a href="#gallery">Галерея</a></li>
                     <li><a href="#videos">Видео</a></li>
                     <li><a href="#slides">Презентация</a></li>
@@ -115,8 +115,51 @@
         </div>
 
         <div class="hero-scroll-hint" aria-hidden="true">
-            <span>Прокрутить</span>
             <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Abstract Section -->
+    <section id="abstract" class="section abstract-section">
+        <div class="container">
+            <h2 class="section-title-v2">Аннотация проекта</h2>
+            <div class="abstract-content">
+                <p class="abstract-text animate-on-scroll">
+                Проект направлен на разработку компактной и доступной экспериментальной платформы для исследования управления квадрокоптером по углам ориентации. В работе используются два различных типа летательных аппаратов: первый квадрокоптер собран «с нуля» на основе собственной 3D-печатной конструкции, реализован на базе проекта
+                <a href="https://habr.com/ru/articles/814127/" target="_blank" rel="noopener noreferrer" class="text-link">
+                    Flix (ESP32-Drone)
+                    </a>
+                и второй построен на базе готовой аппаратной платформы проекта
+                <a href="https://github.com/espressif/esp-drone" target="_blank" rel="noopener noreferrer" class="text-link">
+                Espressif (ESP32-Drone)
+                </a>,
+                для которой был полностью переписан бортовой программный комплекс управления.
+                Оба варианта квадрокоптера проходят испытания на механической стойке с тремя степенями свободы, что позволяет безопасно отрабатывать алгоритмы стабилизации и регулирования углов крена, тангажа и рыскания без риска повреждения аппарата и окружающей инфраструктуры. На сайте представлены подробное описание конструкции стенда, 3D-модели и чертежи, результаты испытаний, а также материалы по алгоритмам управления квадрокоптером.
+                </p>
+                <div class="abstract-highlights">
+                    <div class="highlight-item animate-on-scroll">
+                        <h4>Бортовая платформа квадрокоптера</h4>
+                        <p>
+                        Квадрокоптер оснащён 3D-печатным корпусом, бесколлекторными двигателями A2212 с регуляторами ESC и аккумулятором LiPo 4S. Бортовой контроллер ESP-32 в реальном времени считывает данные инерциального модуля MPU-6050 (углы крена, тангажа, рыскания и угловые скорости) и барометра BMP280, вычисляет управляющие воздействия по заданному алгоритму и формирует ШИМ-сигналы на двигатели, обеспечивая стабилизацию аппарата по трём осям.
+                        </p>
+                    </div>
+
+                    <div class="highlight-item animate-on-scroll">
+                        <h4>Механический стенд (стойка для квадрокоптера)</h4>
+                        <p>
+                        Трёхосевая стойка типа «перевёрнутый маятник» фиксирует центр масс квадрокоптера, предоставляя свободу вращения по крену, тангажу и рысканию. Конструкция полностью спроектирована в OpenSCAD как параметрическая модель и изготовлена методом FDM-печати. Подшипниковые опоры обеспечивают малое трение при повороте, что позволяет получать достоверные данные переходных процессов без влияния стойки на динамику аппарата.
+                        </p>
+                    </div>
+
+                    <div class="highlight-item animate-on-scroll">
+                        <h4>Система управления и связи (ESP-32 + ESP-8266 + ПК)</h4>
+                        <p>
+                        Алгоритмы управления (PD-PD/PD–PI, робастные/оптимальные), реализация на ESP-32, обмен данными по Wi-Fi через ESP-8266, а также ПК-часть: программа на Qt для визуализации переходных процессов и настройки коэффициентов регуляторов в реальном времени.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -151,10 +194,10 @@
                             <h3 class="uav-card-title">Полноразмерный UAV собственной сборки</h3>
                             <p class="uav-card-desc">Квадрокоптер собран с нуля: 3D-печатный корпус, BLDC-моторы, ESC и аккумулятор LiPo 4S. Прошивка разработана на базе проекта Flix.</p>
                             <div class="uav-card-tags">
-                                <span class="uav-tag">ESP-32</span>
-                                <span class="uav-tag">MPU-6050</span>
-                                <span class="uav-tag">BMP280</span>
-                                <span class="uav-tag">3D-печать</span>
+                                <button class="uav-tag uav-tag--btn" data-img="images/1/esp32.jpeg"  data-label="ESP-32">ESP-32</button>
+                                <button class="uav-tag uav-tag--btn" data-img="images/1/mpu6050.png" data-label="MPU-6050">MPU-6050</button>
+                                <button class="uav-tag uav-tag--btn" data-img="images/1/bmp280.jpeg" data-label="BMP280">BMP280</button>
+                                <button class="uav-tag uav-tag--btn" data-img="images/1/3D-uav.jpg"  data-label="3D-печать">3D-печать</button>
                             </div>
                         </div>
                     </div>
@@ -168,9 +211,9 @@
                             <h3 class="uav-card-title">Малый прототип на базе ESP32-Drone</h3>
                             <p class="uav-card-desc">Аппаратная платформа Espressif ESP32-Drone с полностью переписанным программным комплексом управления полётом.</p>
                             <div class="uav-card-tags">
-                                <span class="uav-tag">ESP32-S2</span>
-                                <span class="uav-tag">Wi-Fi</span>
-                                <span class="uav-tag">Компактный</span>
+                                <button class="uav-tag uav-tag--btn" data-img="images/2/esp32-s2.png" data-label="ESP32-S2">ESP32-S2</button>
+                                <button class="uav-tag uav-tag--btn" data-img="images/2/wifi.jpg"     data-label="Wi-Fi">Wi-Fi</button>
+                                <button class="uav-tag uav-tag--btn" data-img="images/2/mavlink.jpeg" data-label="MAVLink">MAVLink</button>
                             </div>
                         </div>
                     </div>
@@ -184,9 +227,9 @@
                             <h3 class="uav-card-title">Квадрокоптер собственной сборки</h3>
                             <p class="uav-card-desc">Собран с нуля на 3D-печатном корпусе с BLDC-моторами A2212, ESC и аккумулятором LiPo 4S.</p>
                             <div class="uav-card-tags">
-                                <span class="uav-tag">A2212</span>
-                                <span class="uav-tag">LiPo 4S</span>
-                                <span class="uav-tag">ESP-32</span>
+                                <button class="uav-tag uav-tag--btn" data-img="images/3/motor.jpeg"  data-label="Двигатели">Двигатели</button>
+                                <button class="uav-tag uav-tag--btn" data-img="images/3/pin.jpeg"    data-label="Батарейка">Батарейка</button>
+                                <button class="uav-tag uav-tag--btn" data-img="images/3/RX_TX.jpeg"  data-label="TX-RX">TX-RX</button>
                             </div>
                         </div>
                     </div>
@@ -216,8 +259,8 @@
     <!-- Author Bio Section -->
     <section id="author" class="section author-section">
         <div class="container">
-                <h2 class="section-title-v2" style="margin-bottom:2rem">Об авторах</h2>
-            
+                <h2 class="section-title-v2">Об авторах</h2>
+
             <div class="author-content" id="authorContent">
                 <!-- Author 2: Pham Trong Hai -->
                 <div class="author-card animate-on-scroll">
@@ -264,50 +307,6 @@
                                 <div class="stat-label">Публикаций</div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-            </div>  
-        </div>
-    </section>
-
-    <!-- Abstract Section -->
-    <section id="abstract" class="section abstract-section">
-        <div class="container">
-            <h2 class="section-title-v2" style="margin-bottom:2rem">Аннотация проекта</h2>
-            <div class="abstract-content">
-                <p class="abstract-text animate-on-scroll">
-                Проект направлен на разработку компактной и доступной экспериментальной платформы для исследования управления квадрокоптером по углам ориентации. В работе используются два различных типа летательных аппаратов: первый квадрокоптер собран «с нуля» на основе собственной 3D-печатной конструкции, реализован на базе проекта
-                <a href="https://habr.com/ru/articles/814127/" target="_blank" rel="noopener noreferrer" class="text-link">
-                    Flix (ESP32-Drone)
-                    </a> 
-                и второй построен на базе готовой аппаратной платформы проекта 
-                <a href="https://github.com/espressif/esp-drone" target="_blank" rel="noopener noreferrer" class="text-link">
-                Espressif (ESP32-Drone)
-                </a>, 
-                для которой был полностью переписан бортовой программный комплекс управления.
-                Оба варианта квадрокоптера проходят испытания на механической стойке с тремя степенями свободы, что позволяет безопасно отрабатывать алгоритмы стабилизации и регулирования углов крена, тангажа и рыскания без риска повреждения аппарата и окружающей инфраструктуры. На сайте представлены подробное описание конструкции стенда, 3D-модели и чертежи, результаты испытаний, а также материалы по алгоритмам управления квадрокоптером.
-                </p>
-                <div class="abstract-highlights">
-                    <div class="highlight-item animate-on-scroll">
-                        <h4>Бортовая платформа квадрокоптера</h4>
-                        <p>
-                        Сам UAV: 3D-печатный корпус, BLDC-моторы, ESC, аккумулятор, IMU MPU-6050, барометр BMP280, микроконтроллер ESP-32 как «мозг» аппарата. Тут логично рассказать, какие датчики стоят, какие сигналы меряются и как формируются управляющие воздействия на моторы.
-                        </p>
-                    </div>
-
-                    <div class="highlight-item animate-on-scroll">
-                        <h4>Механический стенд (стойка для квадрокоптера)</h4>
-                        <p>
-                        Перевёрнутый маятник / трёхосевая стойка, которая позволяет поворачивать квадрокоптер по крену, тангажу и рысканию при зафиксированном центре масс. Здесь описываем конструкцию, 3D-печать, OpenSCAD, крепление UAV, диапазоны углов и т.п.
-                        </p>
-                    </div>
-
-                    <div class="highlight-item animate-on-scroll">
-                        <h4>Система управления и связи (ESP-32 + ESP-8266 + ПК)</h4>
-                        <p>
-                        Алгоритмы управления (PD-PD/PD–PI, робастные/оптимальные), реализация на ESP-32, обмен данными по Wi-Fi через ESP-8266, а также ПК-часть: программа на Qt для визуализации переходных процессов и настройки коэффициентов регуляторов в реальном времени.
-                        </p>
                     </div>
                 </div>
 
@@ -388,172 +387,195 @@
     <!-- Video Section -->
     <section id="videos" class="section video-section">
         <div class="container">
-            <div class="showcase-header animate-on-scroll" style="margin-bottom:2rem">
+            <div class="showcase-header animate-on-scroll">
                 <div>
                     <h2 class="section-title-v2">Видеоматериалы</h2>
                     <p class="section-sub">Записи экспериментов, испытаний и демонстраций</p>
                 </div>
             </div>
-            <div class="video-grid">
 
-                    <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video8" class="video-element" preload="metadata" controls>
-                            <source src="videos/vide_UAV_pitch.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">3D моделирования по тангажу</p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                <div class="video-wrapper">
-                        <video id="video9" class="video-element" preload="metadata" controls>
-                            <source src="videos/uav_blender.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">3D моделирования по крену</p>
-                </div>
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video10" class="video-element" preload="metadata" controls>
-                            <source src="videos/printer3D.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Распечатать 3D корпус квадрокоптера - часть 1</p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video11" class="video-element" preload="metadata" controls>
-                            <source src="videos/printer3D_2.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Печать деталей корпуса квадрокоптера - часть 2</p>
-                </div>
-                
-                 <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video3" class="video-element" preload="metadata" controls>
-                            <source src="videos/uav_nho_1.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Тестирование реакции малогабаритного квадрокоптера при воздействии внешней силы</p>
-                </div>
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video4" class="video-element" preload="metadata" controls>
-                            <source src="videos/uav_nho_2.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Тестирование вращения малогабаритного квадрокоптера по заданному углу на стойке</p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video5" class="video-element" preload="metadata" controls>
-                            <source src="videos/hai_gt_.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Представление вращения и переходного процесса квадрокоптера в реальном времени</p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video6" class="video-element" preload="metadata" controls>
-                            <source src="videos/thay_gt_.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">По реакции квадрокоптера можно выполнить дальнейший анализ динамики и уточнить параметры регулятора управления</p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video1" class="video-element" preload="metadata" controls>
-                            <source src="videos/test_UAV_1_kanal.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Тестирование квадрокоптера по одному каналу</p>
-                </div>
-
-                
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video2" class="video-element" preload="metadata" controls>
-                            <source src="videos/test_UAV_to.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Тестирование квадрокоптера с совмещением каналов</p>
-                </div>
-               
-                <div class="video-card animate-on-scroll">
-                    <div class="video-wrapper">
-                        <video id="video7" class="video-element" preload="metadata" controls>
-                            <source src="videos/ctrl_slide.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Тестирование полета квадрокоптера с применением регулятора в скользящем режиме </p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                <div class="video-wrapper">
-                        <video id="video12" class="video-element" preload="metadata" controls>
-                            <source src="videos/video_UAV_ok.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Представление проекта</p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                <div class="video-wrapper">
-                        <video id="video13" class="video-element" preload="metadata" controls>
-                            <source src="videos/1.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Тестирование полета большого квадрокоптера на базе разпечатого корпуса на полигоне</p>
-                </div>
-
-                <div class="video-card animate-on-scroll">
-                <div class="video-wrapper">
-                        <video id="video14" class="video-element" preload="metadata" controls>
-                            <source src="videos/2.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Тестирование полета маленького квадрокоптера на базе ESP32</p>
-                </div>
-
-
-                <div class="video-card animate-on-scroll">
-                <div class="video-wrapper">
-                        <video id="video15" class="video-element" preload="metadata" controls>
-                            <source src="videos/3.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео тег.
-                        </video>
-                    </div>
-                    <p class="video-title">Тестирование полета маленького квадрокоптера на базе ESP32 на полигоне</p>
-                </div>
-
+            <!-- Video category tabs -->
+            <div class="video-tabs" role="tablist" aria-label="Категории видео">
+                <button class="video-tab active" role="tab" aria-selected="true"  data-tab="modelling">3D-моделирование и печать</button>
+                <button class="video-tab"        role="tab" aria-selected="false" data-tab="stand">Испытания на стойке</button>
+                <button class="video-tab"        role="tab" aria-selected="false" data-tab="flight">Полётные испытания</button>
             </div>
+
+            <!-- Tab panel: 3D-моделирование и печать -->
+            <div class="video-panel active" data-panel="modelling" role="tabpanel">
+                <div class="video-grid">
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video8" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video8.jpg">
+                                <source src="videos/vide_UAV_pitch.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">3D-симуляция управления по тангажу</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video9" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video9.jpg">
+                                <source src="videos/uav_blender.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">3D-симуляция управления по крену</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video10" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video10.jpg">
+                                <source src="videos/printer3D.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">3D-печать корпуса квадрокоптера — часть 1</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video11" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video11.jpg">
+                                <source src="videos/printer3D_2.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">3D-печать корпуса квадрокоптера — часть 2</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab panel: Испытания на стойке -->
+            <div class="video-panel" data-panel="stand" role="tabpanel" hidden>
+                <div class="video-grid">
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video3" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video3.jpg">
+                                <source src="videos/uav_nho_1.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Реакция малогабаритного квадрокоптера на внешнее воздействие</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video4" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video4.jpg">
+                                <source src="videos/uav_nho_2.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Стабилизация малогабаритного квадрокоптера по заданному углу</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video5" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video5.jpg">
+                                <source src="videos/hai_gt_.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Переходный процесс квадрокоптера в реальном времени</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video6" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video6.jpg">
+                                <source src="videos/thay_gt_.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Анализ динамики и настройка параметров регулятора</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video1" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video1.jpg">
+                                <source src="videos/test_UAV_1_kanal.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Тестирование по одному каналу управления</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video2" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video2.jpg">
+                                <source src="videos/test_UAV_to.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Тестирование при совмещении каналов управления</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video7" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video7.jpg">
+                                <source src="videos/ctrl_slide.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Испытание регулятора в скользящем режиме</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab panel: Полётные испытания -->
+            <div class="video-panel" data-panel="flight" role="tabpanel" hidden>
+                <div class="video-grid">
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video12" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video12.jpg">
+                                <source src="videos/video_UAV_ok.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Представление проекта</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video13" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video13.jpg">
+                                <source src="videos/1.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Полёт крупного квадрокоптера с 3D-печатным корпусом</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video14" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video14.jpg">
+                                <source src="videos/2.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Полёт малого квадрокоптера ESP32</p>
+                    </div>
+                    <div class="video-card animate-on-scroll">
+                        <div class="video-wrapper">
+                            <video id="video15" class="video-element" preload="none" controls
+                                   poster="images/posters/poster_video15.jpg">
+                                <source src="videos/3.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
+                        <p class="video-title">Полёт малого квадрокоптера ESP32 на полигоне</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Slides / Presentation Section -->
     <section id="slides" class="section slides-section">
         <div class="container">
-            <h2 class="section-title-v2" style="margin-bottom:2rem">Презентация проекта</h2>
+            <h2 class="section-title-v2">Презентация проекта</h2>
             <div class="slides-layout">
                 <div class="slides-info animate-on-scroll">
                     <h3 class="slides-subtitle">Слайд-презентация стенда</h3>
@@ -594,7 +616,7 @@
     <!-- Project Details Section -->
     <section id="details" class="section details-section">
         <div class="container">
-            <h2 class="section-title-v2" style="margin-bottom:2rem">Детали проекта</h2>
+            <h2 class="section-title-v2">Детали проекта</h2>
             <div class="details-grid">
                 <div class="detail-card animate-on-scroll">
                     <div class="detail-icon">
@@ -804,6 +826,15 @@
             <p class="modal-description">
                 Узел бортовой электроники стенда: отладочная плата с микроконтроллером ESP32, к которой подключены датчики (IMU и барометр) и силовая часть. Через этот модуль реализуются сбор данных, вычисление управляющих воздействий и обмен информацией с компьютером в реальном времени.
             </p>
+        </div>
+    </div>
+
+    <!-- Modal: component image (shared, filled dynamically by JS) -->
+    <div id="compModal" class="modal">
+        <div class="modal-content modal-content--compact">
+            <span class="modal-close">&times;</span>
+            <h2 class="modal-title" id="compModalTitle"></h2>
+            <img id="compModalImg" src="" alt="" class="modal-image">
         </div>
     </div>
 

@@ -183,6 +183,57 @@ document.querySelectorAll('.video-element').forEach(video => {
 });
 
 // ===========================
+// Video tabs — switch panels
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    const tabs   = document.querySelectorAll('.video-tab');
+    const panels = document.querySelectorAll('.video-panel');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
+
+            tabs.forEach(t => {
+                t.classList.toggle('active', t === tab);
+                t.setAttribute('aria-selected', String(t === tab));
+            });
+
+            panels.forEach(p => {
+                const isActive = p.dataset.panel === target;
+                p.classList.toggle('active', isActive);
+                if (isActive) {
+                    p.removeAttribute('hidden');
+                } else {
+                    // pause any playing videos in the panel we're hiding
+                    p.querySelectorAll('.video-element').forEach(v => v.pause());
+                    p.setAttribute('hidden', '');
+                }
+            });
+        });
+    });
+});
+
+// ===========================
+// Video lazy loading — load metadata only when near viewport
+// ===========================
+(function () {
+    const lazyVideos = document.querySelectorAll('.video-element[preload="none"]');
+    if (!lazyVideos.length) return;
+
+    const lazyObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const video = entry.target;
+                video.preload = 'metadata';
+                lazyObs.unobserve(video);
+            }
+        });
+    }, { rootMargin: '200px 0px' });
+
+    lazyVideos.forEach(v => lazyObs.observe(v));
+}());
+
+// ===========================
 // Gallery Modals
 // ===========================
 document.addEventListener('DOMContentLoaded', () => {
@@ -239,6 +290,31 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 console.log('Landing page for UAV stand loaded successfully.');
+
+// ===========================
+// Component tag modal
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    const compModal = document.getElementById('compModal');
+    const compImg   = document.getElementById('compModalImg');
+    const compTitle = document.getElementById('compModalTitle');
+    if (!compModal) return;
+
+    document.querySelectorAll('.uav-tag--btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            compImg.src = btn.dataset.img;
+            compImg.alt = btn.dataset.label;
+            compTitle.textContent = btn.dataset.label;
+            compModal.classList.add('open');
+        });
+    });
+
+    const closeBtn = compModal.querySelector('.modal-close');
+    if (closeBtn) closeBtn.addEventListener('click', () => compModal.classList.remove('open'));
+    compModal.addEventListener('click', e => {
+        if (e.target === compModal) compModal.classList.remove('open');
+    });
+});
 
 // ===========================
 // Horizontal Carousel

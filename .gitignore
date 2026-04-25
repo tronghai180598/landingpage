@@ -1,0 +1,12 @@
+# Private working documents — not web assets
+hoi_gpt.pdf
+confferen_24_11_15_TPU.odt
+our_text_slide.odt
+text_slide_01.odt
+text_slide_02.odt
+images/slide_UAV.pptx
+
+# Editor/OS artifacts
+.vscode/
+*.DS_Store
+Thumbs.db
